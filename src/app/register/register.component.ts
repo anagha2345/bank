@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -6,12 +7,32 @@ import { DataService } from '../services/data.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+
 export class RegisterComponent implements OnInit{
-  constructor(private ds:DataService){}
+  acn=''
+  usn=''
+  psw=''
+
+  constructor(private ds:DataService,private routes:Router){}
   ngOnInit():void{
 
   }
   register(){
-  let userDetails=this.ds.userDetails
+  
+  var acnum=this.acn
+  var user=this.usn
+  var pswrd=this.psw
+
+
+  const result=this.ds.register(user,acnum,pswrd)
+  if(result){
+    alert("registered")
+    this.routes.navigateByUrl("")
+  }
+  else{
+    alert("accont number already present")
+  }
+  // console.log(acnum,user,pswrd);
+  
   }
 }

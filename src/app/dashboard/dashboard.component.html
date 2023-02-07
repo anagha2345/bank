@@ -1,2 +1,45 @@
-
-<h1>Welcome User</h1>
+<h1>Welcome {{user}}</h1>
+<div class="p-2  rounded  border-dark ms-5 me-5 text-center" style="background-color: rgba(87, 87, 78, 0.445)" >
+    <a style="text-decoration: none; color: blueviolet; ;" routerLink="/transaction">View Transaction History</a>
+</div>
+<div class="container w-75 row  " style="display: flex; justify-content: space-evenly;">
+    <div class="container col-lg-5 text-center m-4"style="background-color: rgba(70, 86, 108, 0.315);">
+        <form action="" (ngSubmit)="deposit()">
+            <h2>deposit</h2>
+            <div class="p-3" >
+                <input [(ngModel)]="acno" name="acn" type="text" class="form-control mt-3" id="acnum"
+                    placeholder="Account Number">
+            </div>
+            
+            <div class="p-3">
+                <input [(ngModel)]="psw"  name="ps" type="password" class="form-control mt-3" id="pswrd"
+                    placeholder="Password">
+            </div>
+            <div class="p-3">
+                <input [(ngModel)]="amnt" name="amt" type="text" class="form-control mt-3" id="amount"
+                    placeholder="Amount">
+            </div>
+            <div class="text-center">
+                <button type="submit"  class="btn btn-info  mt-5">deposit</button>
+            </div>
+        </form>
+    </div>
+    <div class="container text-center col-lg-5 m-4" style="background-color: rgba(70, 86, 108, 0.315);">
+        <form action="" (ngSubmit)="withdraw()">
+            <h2>Withdraw</h2>
+            <div class="p-3">
+                <input  [(ngModel)]="acno1" name="acn1" type="text" class="form-control  mt-3" id="acnm" placeholder="Account Number">
+            </div>
+            
+            <div class="p-3">
+                <input  [(ngModel)]="psw1" name="ps1" type="password" class="form-control mt-3" id="psw" placeholder="Password">
+            </div>
+            <div class="p-3">
+                <input  [(ngModel)]="amnt1" name="amt1" type="text" class="form-control mt-3" id="amou" placeholder="Amount">
+            </div>
+            <div class="text-center">
+                <button type="submit"  class="btn btn-info ps-4 pe-4 mt-5">withdraw</button>
+            </div>
+        </form>
+    </div>
+</div>

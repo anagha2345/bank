@@ -15,25 +15,20 @@ export class LoginComponent {
   psw=''
  
   constructor(private router:Router,private ds:DataService){}
-  ngnOnInit():void{
+  ngOnInit():void{
   
   } 
   login(){
     var acnum=this.acno
     var pswd=this.psw
-    var userDetails=this.ds.userDetails
-    if(acnum in userDetails){
-        if(pswd==userDetails[acnum]["password"]){
-          alert("log in success")
-          this.router.navigateByUrl("dashboard")
-        }
-        else{
-          alert("password incorrect")
-        }
-    }
-    else{
-      alert("incorrect account number or not registered yet")
-    }
+   const result=this.ds.login(acnum,pswd)
+   if(result){
+    alert("log in success")
+    this.router.navigateByUrl("dashboard")
+   }
+   else{
+     alert("incorrect account number or password")
+   }
    }
   // login(a:any,b:any){
   //   var acnum=a.value
