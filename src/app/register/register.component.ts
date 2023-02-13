@@ -28,17 +28,17 @@ export class RegisterComponent implements OnInit{
   var acnum=this.registerForm.value.acno
   var user=this.registerForm.value.uname
   var pswrd=this.registerForm.value.psw
+
   if(this.registerForm.valid){
-
-
   const result=this.ds.register(user,acnum,pswrd)
-  if(result){
+
+   if(result){
     alert("registered")
     this.routes.navigateByUrl("")
-  }
-  else{
+   }
+   else{
     alert("accont number already present")
-  }
+   }
   // console.log(acnum,user,pswrd);
   }
   else{

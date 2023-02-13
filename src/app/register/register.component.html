@@ -1,14 +1,15 @@
 <div class=" container w-50 p-4  text-center " style="background-color: rgba(95, 93, 90, 0.251); margin-top: 100px;">
-   <form action="" [formGroup]="registerForm" (ngSubmit)="register()">
+   <form [formGroup]="registerForm" action="" (ngSubmit)="register()">
     <h2>Registration form</h2>
+    
     <div class="p-3">
-        <input FormControlName="acno" name="ac" type="text" class="form-control  mt-5" id="acnm" placeholder="Account Number">
+        <input formControlName="uname" name="un" type="text" class="form-control mt-3" id="uname" placeholder="Username">
     </div>
     <div class="p-3">
-        <input FormControlName="uname" name="un" type="text" class="form-control mt-3" id="uname" placeholder="Username">
+        <input formControlName="acno" name="ac" type="text" class="form-control  mt-5" id="acnm" placeholder="Account Number">
     </div>
     <div class="p-3">
-        <input FormControlName="psw"  name="ps" type="password" class="form-control mt-3" id="psw" placeholder="Password">
+        <input formControlName="psw"  name="ps" type="password" class="form-control mt-3" id="psw" placeholder="Password">
     </div>
     <div>
         <button type="submit"  class="btn btn-secondary ps-4 pe-4 mt-5">register</button>
