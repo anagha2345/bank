@@ -1,9 +1,9 @@
 <h1>Welcome {{user}}</h1>
-<div class="p-2  rounded  border-dark ms-5 me-5 text-center" style="background-color: rgba(87, 87, 78, 0.445)" >
+<div class="p-2  container w-25  rounded  border-dark ms-5 me-5 text-center" style="background-color: rgba(87, 87, 78, 0.445)" >
     <a style="text-decoration: none; color: blueviolet; ;" routerLink="/transaction">View Transaction History</a>
 </div>
-<div class="container w-75 row  " style="display: flex; justify-content: space-evenly;">
-    <div class="container col-lg-5 text-center m-4"style="background-color: rgba(70, 86, 108, 0.315);">
+<div class="container w-100 row mt-3" style="display: flex; justify-content: space-evenly;">
+    <div class="container w-25 col-lg-6 col-md-12 text-center "style="background-color: rgba(70, 86, 108, 0.315);">
         <form action="" (ngSubmit)="deposit()">
             <h2>deposit</h2>
             <div class="p-3" >
@@ -24,7 +24,7 @@
             </div>
         </form>
     </div>
-    <div class="container text-center col-lg-5 m-4" style="background-color: rgba(70, 86, 108, 0.315);">
+    <div class="container w-25 text-center col-lg-6 col-md-12" style="background-color: rgba(70, 86, 108, 0.315);">
         <form action="" (ngSubmit)="withdraw()">
             <h2>Withdraw</h2>
             <div class="p-3">

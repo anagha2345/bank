@@ -30,8 +30,9 @@ export class DataService {
     if (acno in userDetails) {
       if (psw == userDetails[acno]["password"]) {
         this.currentUser = userDetails[acno]["username"]
-        console.log(this.currentUser);
+        // console.log(this.currentUser);
         this.currentAcno=acno
+        
 
         return true
 
@@ -54,7 +55,8 @@ export class DataService {
         userDetails[acnum]["balance"] += amnt
 
         //transaction data details 
-        userDetails[acnum]["transaction"].push({type:"credit",amount:amnt})
+        userDetails[acnum]["transaction"].push({Type:"CREDIT",amount:amnt})
+        console.log(userDetails);
         //return balance
         return userDetails[acnum]["balance"]
       }
@@ -72,11 +74,11 @@ export class DataService {
     var amnt = parseInt(amount)
     if (acnum in userDetails) {
       if (password == userDetails[acnum]["password"]) {
-        if (amnt < userDetails[acnum]["balance"]) {
+        if (amnt <= userDetails[acnum]["balance"]) {
           //update balance
           userDetails[acnum]["balance"] -= amnt
           // //transaction data details 
-        userDetails[acnum]["transaction"].push({type:"debit",amount:amnt})
+        userDetails[acnum]["transaction"].push({Type:"DEBIT",amount:amnt})
         console.log(userDetails);
         
           //return balance

@@ -1,18 +1,21 @@
 <div class="container w-50  text-white text-center mt-5">
     <h2 class="text-dark">Transaction History</h2>
     <hr class="text-white">
-    <table class="w-100 w-50 bg-dark p-5 mt-4" style="">
+    <table class="w-100 w-50 bg-dark p-5 mt-4">
         <thead class="bg-secondary">
-        <tr>
-            <th>Type</th>
-            <th>Amount</th>
-        </tr>
-        </thead>
-        <tbody *ngfor="let i of transactionData">
-            <tr>
-            <td>{{i.type}}</td>
-            <td>{{i.amount}}</td>
+            <tr class="">
+                <th>Type</th>
+                <th>Amount</th>
             </tr>
+        </thead>
+        <tbody *ngFor="let i of transactionData">
+            <tr>
+                <td>{{i.Type}}</td>
+                <td>{{i.amount}}</td>
+            </tr>
+            
+                
+            
         </tbody>
     </table>
 </div>

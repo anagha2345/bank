@@ -8,12 +8,15 @@ import { DataService } from '../services/data.service';
 })
 export class TransactionComponent implements OnInit{
   transactionData:any
+  
   constructor(private ds:DataService){
     
-this.transactionData=this.ds.getTransaction(this.ds.currentAcno)
+    this.transactionData=this.ds.getTransaction(this.ds.currentAcno)
+    console.log(this.transactionData);
+    
   }
+
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
 
 }
