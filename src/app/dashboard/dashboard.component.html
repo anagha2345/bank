@@ -1,22 +1,38 @@
+<div class="text-black mt-1 ">
+    <h5>{{datedetails | date:'short'}}</h5>
+</div>
+
+
+<div class="text-end mt-0 pe-4">
+  <button class="btn btn-light m-2" type="button" (click)="deleteParent()">Delete Account</button>
+  <button class="btn btn-secondary"type="button" (click)="logout()">log out</button>
+</div>
+
 <h1>Welcome {{user}}</h1>
-<div class="p-2  container w-25  rounded  border-dark ms-5 me-5 text-center" style="background-color: rgba(87, 87, 78, 0.445)" >
+
+<div [ngClass]="acno?'style':''" class="p-2  container w-25  rounded  border-dark   text-center mt-2" style="background-color: rgba(87, 87, 78, 0.445)" >
     <a style="text-decoration: none; color: blueviolet; ;" routerLink="/transaction">View Transaction History</a>
 </div>
-<div class="container w-100 row mt-3" style="display: flex; justify-content: space-evenly;">
+
+
+<app-deleteconfirm (oncancel)="cancel()" [item]="acno"></app-deleteconfirm>
+
+
+<div [ngClass]="acno?'style':''" class="container w-100 row mt-3 ">
     <div class="container w-25 col-lg-6 col-md-12 text-center "style="background-color: rgba(70, 86, 108, 0.315);">
-        <form action="" (ngSubmit)="deposit()">
+        <form action="" [formGroup]="depositForm"  (ngSubmit)="deposit()">
             <h2>deposit</h2>
             <div class="p-3" >
-                <input [(ngModel)]="acno" name="acn" type="text" class="form-control mt-3" id="acnum"
+                <input formControlName="acno" name="acn" type="text" class="form-control mt-3" id="acnum"
                     placeholder="Account Number">
             </div>
             
             <div class="p-3">
-                <input [(ngModel)]="psw"  name="ps" type="password" class="form-control mt-3" id="pswrd"
+                <input formControlName="psw"  name="ps" type="password" class="form-control mt-3" id="pswrd"
                     placeholder="Password">
             </div>
             <div class="p-3">
-                <input [(ngModel)]="amnt" name="amt" type="text" class="form-control mt-3" id="amount"
+                <input formControlName="amnt" name="amt" type="text" class="form-control mt-3" id="amount"
                     placeholder="Amount">
             </div>
             <div class="text-center">
@@ -25,17 +41,17 @@
         </form>
     </div>
     <div class="container w-25 text-center col-lg-6 col-md-12" style="background-color: rgba(70, 86, 108, 0.315);">
-        <form action="" (ngSubmit)="withdraw()">
+        <form action="" [formGroup]="withdrawForm" (ngSubmit)="withdraw()">
             <h2>Withdraw</h2>
             <div class="p-3">
-                <input  [(ngModel)]="acno1" name="acn1" type="text" class="form-control  mt-3" id="acnm" placeholder="Account Number">
+                <input  formControlName="acno1" name="acn1" type="text" class="form-control  mt-3" id="acnm" placeholder="Account Number">
             </div>
             
             <div class="p-3">
-                <input  [(ngModel)]="psw1" name="ps1" type="password" class="form-control mt-3" id="psw" placeholder="Password">
+                <input  formControlName="psw1" name="ps1" type="password" class="form-control mt-3" id="psw" placeholder="Password">
             </div>
             <div class="p-3">
-                <input  [(ngModel)]="amnt1" name="amt1" type="text" class="form-control mt-3" id="amou" placeholder="Amount">
+                <input  formControlName="amnt1" name="amt1" type="text" class="form-control mt-3" id="amou" placeholder="Amount">
             </div>
             <div class="text-center">
                 <button type="submit"  class="btn btn-info ps-4 pe-4 mt-5">withdraw</button>

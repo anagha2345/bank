@@ -1,11 +1,11 @@
 <h2>{{data}}</h2>
-<form (ngSubmit)="login()" action="" class="container w-50 p-5  rounded" style="background-color: rgba(9, 9, 8, 0.447); align-items: center; margin-top: 100px;">
+<form [formGroup]="loginForm" (ngSubmit)="login()" action="" class="container w-50 p-5  rounded" style="background-color: rgba(9, 9, 8, 0.447); align-items: center; margin-top: 100px;">
     <h2 class="text-center text-white">Sign In To Your Account</h2>
     <div class=" mt-2 p-3">
-        <input [(ngModel)]="acno" type="text" placeholder="Account Number" class="form-control" id="uname" name="username" [placeholder]="inputplaceholder">
+        <input formControlName="acno" type="text" placeholder="Account Number" class="form-control" id="uname" name="username" [placeholder]="inputplaceholder">
     </div>
     <div class=" mt-2 p-3">
-        <input [(ngModel)]="psw" type="password" placeholder="Password" class="form-control " id="pswd" name="password">
+        <input formControlName="psw" type="password" placeholder="Password" class="form-control " id="pswd" name="password">
     </div>
     <div class="text-center mt-2 p-2">
     <button type="submit"  class="btn btn-outline-light" >Log In</button>
