@@ -30,20 +30,18 @@ export class RegisterComponent implements OnInit{
   var pswrd=this.registerForm.value.psw
 
   if(this.registerForm.valid){
-  const result=this.ds.register(user,acnum,pswrd)
-
-   if(result){
-    alert("registered")
+  this.ds.register(user,acnum,pswrd).subscribe((result:any)=>{
+    alert(result.message)
     this.routes.navigateByUrl("")
-   }
-   else{
-    alert("accont number already present")
-   }
-  // console.log(acnum,user,pswrd);
+  },
+  result=>{
+    alert(result.error.message)
+    this.routes.navigateByUrl("")
   }
-  else{
-    alert('invalid form')
-  }
-
-  }
+  )
+}
+else{
+  alert('invalid form')
+}
+}
 }

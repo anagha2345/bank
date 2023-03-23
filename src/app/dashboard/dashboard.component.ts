@@ -20,7 +20,9 @@ export class DashboardComponent implements OnInit{
 //  psw1:any
 //  amnt1:any
  constructor(private ds:DataService,private fb:FormBuilder,private router:Router){
- this.user=this.ds.currentUser
+  if(localStorage.getItem("currentUser")){
+ this.user=JSON.parse(localStorage.getItem("currentUser")||"")
+ }
  //access date
  this.datedetails=new Date()
 
@@ -37,23 +39,29 @@ export class DashboardComponent implements OnInit{
   amnt1:['',[Validators.required,Validators.pattern('[0-9]+')]]
  })
  ngOnInit():void{
-  if(!localStorage.getItem("currentAcno")){
+  if(!localStorage.getItem("token")){
 alert('please login')
 this.router.navigateByUrl("")
-   }}
+   }
+}
    
  deposit(){
   var acno=this.depositForm.value.acno
   var psw=this.depositForm.value.psw
   var amnt=this.depositForm.value.amnt
   if(this.depositForm.valid){
-    const result=this.ds.deposit(acno,psw,amnt)
-  if(result){
-    alert(`your account has been credited with amount ${amnt}.current balance is ${result}`)
-  }
-  else{
-    alert(`incorrect account number or password`)
-  }
+   this.ds.deposit(acno,psw,amnt).subscribe((result:any)=>{
+      alert(result.message)
+    },
+    result=>{
+      alert(result.error.message)
+    })
+  // if(result){
+  //   alert(`your account has been credited with amount ${amnt}.current balance is ${result}`)
+  // }
+  // else{
+  //   alert(`incorrect account number or password`)
+  // }
  }else{
   alert('invalid form')
  }
@@ -64,10 +72,15 @@ this.router.navigateByUrl("")
   var psw=this.withdrawForm.value.psw1
   var amnt=this.withdrawForm.value.amnt1
   if(this.withdrawForm.valid){
-    const result=this.ds.withdraw(acno,psw,amnt)
-  if(result){
-    alert(`your account has been debited with amount ${amnt}.current balance is ${result}`)
-  }
+    this.ds.withdraw(acno,psw,amnt).subscribe((result:any)=>{
+      alert(result.message)
+    },
+    result=>{
+      alert(result.error.message)
+    })
+  // if(result){
+  //   alert(`your account has been debited with amount ${amnt}.current balance is ${result}`)
+  // }
  }
  else{
   alert('invalid form')
@@ -76,12 +89,20 @@ this.router.navigateByUrl("")
 logout(){
   localStorage.removeItem("currentUser")
   localStorage.removeItem("currentAcno")
+  localStorage.removeItem("token")
   this.router.navigateByUrl("")
 }
 deleteParent(){
   this.acno=JSON.parse(localStorage.getItem("currentAcno")||"")
 }
-  cancel(){
+cancel(){
     this.acno=''
   }
+Delete(event:any){
+  // alert(event)
+  this.ds.deleacc(event).subscribe((result:any)=>{
+    alert(result.message)
+    this.logout()
+  })
+}
 }

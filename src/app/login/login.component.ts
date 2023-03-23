@@ -27,15 +27,20 @@ export class LoginComponent {
   login(){
     var acnum=this.loginForm.value.acno
     var pswd=this.loginForm.value.psw
-    if(this.loginForm.valid){const result=this.ds.login(acnum,pswd)
-   if(result){
-    alert("log in success")
-    this.router.navigateByUrl("dashboard")
-   }
+    if(this.loginForm.valid){
+      this.ds.login(acnum,pswd).subscribe((result:any)=>{
+        localStorage.setItem("currentUser",JSON.stringify(result.currentUser))
+        localStorage.setItem("currentAcno",JSON.stringify(result.currentAcno))
+        localStorage.setItem("token",JSON.stringify(result.token))
+        alert(result.message)
+        this.router.navigateByUrl("dashboard")
+      },
+      result=>{
+        alert(result.error.message)
+        this.router.navigateByUrl("")
+      } )
+    }
    else{
-     alert("incorrect account number or password")
-   }
-   }else{
     alert('invalid form')
    }
   }

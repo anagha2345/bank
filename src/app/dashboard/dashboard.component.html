@@ -15,11 +15,11 @@
 </div>
 
 
-<app-deleteconfirm (oncancel)="cancel()" [item]="acno"></app-deleteconfirm>
+<app-deleteconfirm (onDelete)="Delete($event)" (oncancel)="cancel()" [item]="acno"></app-deleteconfirm>
 
 
-<div [ngClass]="acno?'style':''" class="container w-100 row mt-3 ">
-    <div class="container w-25 col-lg-6 col-md-12 text-center "style="background-color: rgba(70, 86, 108, 0.315);">
+<div [ngClass]="acno?'style':''" class="container w-100 row mt-3 ms-5">
+    <div class="container  w-25 col-lg-6 col-md-12 text-center "style="background-color: rgba(70, 86, 108, 0.315);">
         <form action="" [formGroup]="depositForm"  (ngSubmit)="deposit()">
             <h2>deposit</h2>
             <div class="p-3" >
@@ -40,7 +40,7 @@
             </div>
         </form>
     </div>
-    <div class="container w-25 text-center col-lg-6 col-md-12" style="background-color: rgba(70, 86, 108, 0.315);">
+    <div class="container me-5 w-25 text-center col-lg-6 col-md-12" style="background-color: rgba(70, 86, 108, 0.315);">
         <form action="" [formGroup]="withdrawForm" (ngSubmit)="withdraw()">
             <h2>Withdraw</h2>
             <div class="p-3">
